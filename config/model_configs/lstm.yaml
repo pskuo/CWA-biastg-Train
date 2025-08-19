@@ -1,0 +1,46 @@
+# LSTM model configuration
+
+# Data configuration
+target_column: "biastg"
+frequency: "B"  # Business day frequency
+fill_method: "ffill"
+
+# Data splitting
+train_size: 0.8  # 80% training, 20% testing
+
+# Sequence preparation
+look_back: 1
+time_steps: 3
+
+# Hyperparameter tuning
+tune_hyperparameters: true
+tuning_iterations: 5  # Number of iterations for RandomizedSearchCV
+param_grid:
+  units: [32, 64, 128]
+  dropout_rate: [0.2, 0.3, 0.5]
+  batch_size: [16, 32, 64]
+  epochs: [50, 100]
+
+# Default model parameters (used if not tuning)
+units: 64
+dropout_rate: 0.2
+batch_size: 32
+epochs: 100
+
+# Learning rate scheduler
+learning_rate: 0.001
+lr_decay_after: 10
+lr_decay_rate: 0.9
+
+# Training parameters
+early_stopping_patience: 10
+verbose: 1
+
+# Forecasting
+forecast_horizon: 10  # Number of time steps to forecast
+
+# Saving and visualization
+save_model: true
+model_dir: "outputs/models/lstm"
+output_dir: "outputs/visualizations/lstm"
+results_dir: "outputs/results"

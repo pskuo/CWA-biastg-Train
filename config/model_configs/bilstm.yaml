@@ -1,0 +1,48 @@
+# PyTorch BiLSTM model configuration
+
+# Data configuration
+target_column: "biastg"
+frequency: "B"  # Business day frequency
+fill_method: "ffill"
+
+# Sequence preparation
+look_back: 1
+time_steps: 3
+
+# Model architecture
+hidden_size: 4
+num_layers: 3
+
+# Training parameters
+epochs: 50
+batch_size: 32
+learning_rate: 0.001
+weight_decay: 0.0001
+shuffle_training: true
+
+# Learning rate scheduler
+use_lr_scheduler: true
+lr_factor: 0.5
+lr_patience: 5
+min_lr: 0.000001
+
+# Early stopping
+use_early_stopping: true
+early_stopping_patience: 10
+
+# Model checkpointing
+save_best_model: true
+checkpoint_path: "outputs/checkpoints/bilstm_pytorch/best_model.pt"
+
+# Prediction
+prediction_batch_size: 128
+
+# Forecasting
+forecast_horizon: 10  # Number of time steps to forecast (may be overridden by metadata)
+
+# Saving and output
+save_model: true
+save_results: true
+model_dir: "outputs/models/bilstm_pytorch"
+output_dir: "outputs/visualizations/bilstm_pytorch"
+results_dir: "outputs/results/bilstm_pytorch"

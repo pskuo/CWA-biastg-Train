@@ -1,0 +1,40 @@
+# RNN (GRU) model configuration
+
+# Data configuration
+target_column: "biastg"
+frequency: "B"  # Business day frequency
+fill_method: "ffill"
+validation_split: 0.2
+
+# Model architecture
+look_back: 3
+gru_units_1: 32
+gru_units_2: 16
+dropout_rate: 0.2
+
+# Training parameters
+optimizer: "nadam"
+learning_rate: 0.001
+loss_function: "mean_squared_error"
+epochs: 100
+batch_size: 1
+verbose: 1
+
+# Callbacks
+use_early_stopping: true
+early_stopping_patience: 10
+use_reduce_lr: true
+lr_reduction_factor: 0.2
+lr_patience: 5
+min_lr: 0.0001
+checkpoint_path: "outputs/checkpoints/rnn/best_model.h5"
+
+# Forecasting
+forecast_horizon: 10  # Number of time steps to forecast
+
+# Saving and output
+save_model: true
+save_results: true
+model_dir: "outputs/models/rnn"
+output_dir: "outputs/visualizations/rnn"
+results_dir: "outputs/results/rnn"

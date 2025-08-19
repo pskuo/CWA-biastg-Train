@@ -1,0 +1,59 @@
+# Transformer Time Series model configuration
+
+# Data configuration
+target_column: "biastg"
+frequency: "B"  # Business day frequency
+fill_method: "ffill"
+validation_split: 0.2
+scaler_type: "standard"  # or "minmax"
+
+# Model architecture
+input_chunk_length: 24
+output_chunk_length: 1
+n_head: 4
+dropout: 0.1
+d_model: 64
+num_encoder_layers: 3
+num_decoder_layers: 3
+activation: "relu"
+
+# Training parameters
+n_epochs: 100
+batch_size: 32
+optimizer: "adam"
+learning_rate: 0.001
+random_state: 42
+verbose: true
+force_cpu: false  # Set to true to force CPU even if GPU is available
+
+# Early stopping
+use_early_stopping: true
+early_stopping_monitor: "val_loss"
+early_stopping_patience: 10
+early_stopping_mode: "min"
+
+# Model checkpoint
+use_model_checkpoint: true
+checkpoint_dir: "outputs/checkpoints/transformer_ts"
+checkpoint_monitor: "val_loss"
+
+# Uncertainty estimation
+use_gaussian_likelihood: false
+quantiles: [0.05, 0.5, 0.95]
+num_samples: 500
+
+# Backtesting
+perform_backtesting: true
+backtest_horizon: 1
+backtest_stride: 1
+backtest_retrain: false
+
+# Forecasting
+forecast_horizon: 10  # Number of time steps to forecast
+
+# Saving and output
+save_model: true
+save_results: true
+model_dir: "outputs/models/transformer_ts"
+output_dir: "outputs/visualizations/transformer_ts"
+results_dir: "outputs/results/transformer_ts"

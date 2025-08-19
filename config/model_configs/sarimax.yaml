@@ -1,0 +1,41 @@
+# SARIMAX model configuration
+
+# Target column
+target_column: "biastg"
+
+# Data preprocessing
+frequency: "B"  # Business day frequency
+fill_method: "ffill"
+train_test_split: 0.8  # 80% training, 20% testing
+
+# Feature engineering
+n_lags: 3
+add_extra_features: true
+
+# Outlier detection
+remove_outliers: true
+outlier_threshold: 3
+
+# Data transformation
+use_boxcox: true
+
+# SARIMAX parameters
+# Set auto_arima parameters
+start_p: 0
+start_q: 0
+start_P: 0
+start_Q: 0
+max_p: 3
+max_q: 3
+max_P: 3  
+max_Q: 3
+max_d: 1
+max_D: 1
+seasonal: true
+seasonal_period: 12  # Monthly seasonality
+
+# Forecasting
+forecast_horizon: 10  # Number of time steps to forecast
+
+# Visualization
+visualization_history: 100  # Number of historical points to show in plots

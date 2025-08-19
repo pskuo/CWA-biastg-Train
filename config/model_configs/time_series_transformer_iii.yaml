@@ -1,0 +1,50 @@
+# Exponential Smoothing (ETS) model configuration
+
+# Data configuration
+target_column: "biastg"
+frequency: "B"  # Business day frequency
+fill_method: "ffill"
+validation_split: 0.2
+scaler_type: "standard"  # or "minmax"
+
+# Model parameters
+error_type: "add"  # "add" or "mul"
+trend_type: "add"  # "add", "mul", or null
+seasonal_type: "add"  # "add", "mul", or null
+damped_trend: null  # true, false, or null
+seasonal_periods: null  # integer or null
+
+# Optimization
+optimize_model: true
+optimization_metric: "mae"  # "mae", "mse", "rmse", "mape"
+model_types:  # List of model types to try during optimization
+  - ["add", "add", "add", null]
+  - ["mul", "add", "add", null]
+  - ["add", "add", "mul", null]
+  - ["mul", "add", "mul", null]
+  - ["add", "mul", "add", null]
+  - ["mul", "mul", "add", null]
+  - ["add", "mul", "mul", null]
+  - ["mul", "mul", "mul", null]
+  - ["add", "add", null, null]
+  - ["mul", "add", null, null]
+  - ["add", "mul", null, null]
+  - ["mul", "mul", null, null]
+  - ["add", null, null, null]
+  - ["mul", null, null, null]
+
+# Backtesting
+backtest_stride: 1  # Stride between backtesting windows
+
+# Visualization
+plot_residuals: true
+
+# Forecasting
+forecast_horizon: 10  # Number of time steps to forecast
+
+# Saving and output
+save_model: true
+save_results: true
+model_dir: "outputs/models/ets"
+output_dir: "outputs/visualizations/ets"
+results_dir: "outputs/results/ets"

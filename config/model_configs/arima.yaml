@@ -1,0 +1,23 @@
+# ARIMA model configuration
+
+# Model parameters
+# Set to null to enable auto-parameter search
+arima_order: null  # [p, d, q]
+
+# Parameter search range
+p_values: [0, 1, 2, 3]
+d_values: [0, 1, 2]
+q_values: [0, 1, 2, 3]
+
+# Data preprocessing
+fill_method: "ffill"  # Forward fill for missing values
+remove_outliers: false
+
+# Training settings
+test_size: 10  # Number of samples to use for testing
+
+# Forecasting
+forecast_horizon: 10  # Number of time steps to forecast
+
+# Visualization
+visualization_history: 100  # Number of historical points to show in plots

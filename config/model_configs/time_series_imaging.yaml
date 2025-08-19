@@ -1,0 +1,53 @@
+# CNN-LSTM Time Series Imaging model configuration
+
+# Data configuration
+target_column: "biastg"
+fill_method: "ffill"
+validation_split: 0.2
+test_split: 0.1
+scale_data: true
+
+# Time series decomposition
+use_decomposition: true
+seasonal_period: 7
+seasonal_deg: 1
+trend_deg: 1
+low_pass_deg: 1
+robust: true
+
+# Time series imaging
+window_size: 30
+
+# CNN architecture
+cnn_filters: 64
+cnn_kernel_size: 3
+pool_size: 2
+dropout_rate: 0.3
+
+# LSTM architecture
+lstm_units: 64
+
+# Dense layers
+dense_units: 64
+l2_reg: 0.01
+
+# Training parameters
+epochs: 50
+batch_size: 32
+learning_rate: 0.001
+patience: 10
+use_early_stopping: true
+use_checkpoint: true
+checkpoint_dir: "outputs/checkpoints/cnn_lstm"
+verbose: 1
+
+# Forecasting parameters
+forecast_horizon: 10
+plot_history: 50
+
+# Saving and output
+save_model: true
+save_results: true
+model_dir: "outputs/models/cnn_lstm"
+output_dir: "outputs/visualizations/cnn_lstm"
+results_dir: "outputs/results/cnn_lstm"
